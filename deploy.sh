@@ -8,7 +8,7 @@ cmake -S . -B build \
 
 cmake --build build -j$(nproc)
 
-cd ~/Code/webos-vnc
+cd ~/Code/webos-vnc/WebOS-Alpine
 
 rm -r staging
 mkdir -p staging
