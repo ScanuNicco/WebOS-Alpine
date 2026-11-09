@@ -20,3 +20,6 @@ cp src/icon.png staging/
 chmod +x staging/webos-vnc
 
 #scp -r staging root@10.4.5.185:/media/developer/apps/usr/palm/applications/com.nscanu.webos-vnc
+
+ares-package ./staging
+ares-install  com.nscanu.webos-vnc_0.1.0_arm.ipk

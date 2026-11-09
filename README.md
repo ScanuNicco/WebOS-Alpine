@@ -1,14 +1,21 @@
-# WebOS Alpine
-WebOS Alpine provides all the tools you need to run desktop linux applications on your WebOS TV.
+# WebOS Alpine Launcher
+WebOS Alpine Launcher provides all the tools you need to run desktop linux applications on your WebOS TV in a minimally invasive way. After initial installation, the launcher handles launching and tearing down your chroot environment automatically, so no terminal is required. The app passes all WebOS mouse and keyboard inputs through to the desktop, so any peripherals supported by WebOS should "just work"
+
+**Disclaimer:** While this application was designed not to make invasive changes to your TV's OS, I make no gaurantees that it won't break anything. I am **not** responsible for any negative consequences of using this software.
+
+## Demo
+
 
 ## Installation
 ### Requirements
-- Rooted WebOS TV (This app has only been tested on WebOS 22, but other versions will likely work)
+- Rooted WebOS TV (This app has only been tested on WebOS 22, but other versions may work)
 - USB drive (2GB or more)
 - Bluetooth Keyboard and Mouse
+  - A Magic Remote should work as a mouse, but this is untested as I do not have one.
+  - A USB keyboard/mouse *should* work if your TV has multiple USB ports. This is also untested, since my TV only has one.
 
 ### Installation
-This project assumes you will be Alpine off of a USB drive. My TV didn't have any partitions larger than 2GB, so installing on the TV's disk was not an option. This may be possible on higher end TVs that have more storage
+This project assumes you will be running Alpine off of a USB drive. My TV didn't have any partitions larger than 2GB, so installing on the TV's disk was not an option. This may be possible on higher end TVs that have more storage.
 
 **Preparing your Drive:**
 - Format the drive as ext4. This will wipe the drive
@@ -59,6 +66,42 @@ Before you can use Alpine on your TV, you will need to install LXQt and a VNC se
   ```
 
 **Installing the App:**
-TBD
 
-**Credit:** https://github.com/Ur1man5/alpine-on-webOS for the guide on initial chroot 
+On your computer, replace `TV_IP`:
+
+```sh
+scp -O dist/com.nscanu.webos-vnc_0.1.0_arm.ipk root@TV_IP:/tmp/alpine.ipk
+ssh root@TV_IP
+```
+
+In the TV's root shell:
+
+```sh
+luna-send -i luna://com.webos.appInstallService/dev/install \
+  '{"id":"com.nscanu.webos-vnc","ipkUrl":"/tmp/alpine.ipk","subscribe":true}'
+```
+
+**Congratulations!** At this point you should have a functioning Linux desktop environment on your TV. The app
+
+## FAQ
+**How fast is it?**
+
+Not very. On my TV, simpler apps like file manager and terminal opened within a few seconds and worked well. Firefox took 15-30s, and browsing the internet was quite slow. The TV ran out of memory when trying to play a youtube video. I imagine preformance is quite a bit better on newer or higher-end models.
+
+**How does it work?**
+
+A bundled shell script mounts your Alpine install, enters the chroot, and launches LXQt and a VNC server. The app itself is mostly just a native VNC client for WebOS. This is the least invasive way to run a desktop on desktop on your TV, but it sacrafices some preformance by running the TV's UI at the same time as LXQt. 
+
+**Can I use a different window manager?**
+Right now the app is hardcoded to launch LXQt. If you want support for other WMs feel free to submit a PR.
+
+**Does it work on X version of WebOS?**
+
+Maybe. It might work on other versions, but I can only test on the TV I own. The only way to know for sure is to try it.
+
+**Was AI used to develop this?**
+
+Yes.
+
+## Credit
+ https://github.com/Ur1man5/alpine-on-webOS for the guide on setting up alpine in a chroot environment 

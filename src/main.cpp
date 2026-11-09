@@ -35,14 +35,23 @@ struct DesktopState {
     std::atomic<bool> failed{false};
     std::atomic<bool> finished{false};
     std::atomic<bool> stopRequested{false};
+    std::atomic<int> progress{0};
 };
 
 static DesktopState desktop;
 
-void setStatus(const std::string& message)
+void setStatus(const std::string& message, int pct = -1)
 {
-    std::lock_guard<std::mutex> lock(desktop.mutex);
-    desktop.status = message;
+    {
+        std::lock_guard<std::mutex> lock(desktop.mutex);
+        desktop.status = message;
+    }
+
+    if (pct > desktop.progress)      // only ever moves forward
+        desktop.progress = pct;
+
+    fprintf(stderr, "[status] %3d%% %s\n",
+            desktop.progress.load(), message.c_str());
 }
 
 std::string getStatus()
@@ -64,6 +73,8 @@ static LSMessageToken spawnToken = LSMESSAGE_TOKEN_INVALID;
 static LSMessageToken stopToken = LSMESSAGE_TOKEN_INVALID;
 
 static std::atomic<bool> stopFinished{false};
+
+static std::atomic<bool> g_quit{false};
 
 static void pumpLuna()
 {
@@ -88,20 +99,26 @@ static bool spawnCallback(
 
     std::string response(payload);
 
+    fprintf(stderr, "[spawn] %.300s\n", payload);
+
     // stdout from linux-desktop.sh
     if (response.find("\"stdoutString\"") != std::string::npos) {
 
-        if (response.find("already mounted") != std::string::npos)
-            setStatus("Alpine environment ready");
+        if (response.find("Mounting") != std::string::npos)
+            setStatus("Mounting Alpine image...", 10);
+
+        else if (response.find("already mounted") != std::string::npos)
+            setStatus("Alpine environment ready", 25);
 
         else if (response.find("Starting Xvnc") != std::string::npos)
-            setStatus("Starting VNC server...");
+            setStatus("Starting VNC server...", 45);
 
         else if (response.find("Starting LXQt") != std::string::npos)
-            setStatus("Starting LXQt desktop...");
+            setStatus("Starting LXQt desktop...", 65);
 
-        else if (response.find("Desktop started") != std::string::npos) {
-            setStatus("LXQt started. Connecting...");
+        else if (response.find("Desktop started") != std::string::npos ||
+                 response.find("already running") != std::string::npos) {
+            setStatus("Desktop started. Waiting for VNC...", 80);
             desktop.ready = true;
         }
 
@@ -159,6 +176,32 @@ static bool stopCallback(
     return true;
 }
 
+static uint16_t readU16(const uint8_t *p)
+{
+    return (uint16_t(p[0]) << 8) | p[1];
+}
+
+static uint32_t readU32(const uint8_t *p)
+{
+    return (uint32_t(p[0]) << 24) |
+           (uint32_t(p[1]) << 16) |
+           (uint32_t(p[2]) << 8) |
+           uint32_t(p[3]);
+}
+
+static void writeU16(uint8_t *p, uint16_t v)
+{
+    p[0] = uint8_t(v >> 8);
+    p[1] = uint8_t(v);
+}
+
+static void writeU32(uint8_t *p, uint32_t v)
+{
+    p[0] = uint8_t(v >> 24);
+    p[1] = uint8_t(v >> 16);
+    p[2] = uint8_t(v >> 8);
+    p[3] = uint8_t(v);
+}
 
 static bool recvExact(int fd, void *buffer, size_t length)
 {
@@ -214,31 +257,56 @@ static bool sendPointerEvent(int fd, uint8_t buttons, uint16_t x, uint16_t y)
     return sendExact(fd, msg, sizeof(msg));
 }
 
-static uint16_t readU16(const uint8_t *p)
+static bool sendKeyEvent(int fd, bool down, uint32_t keysym)
 {
-    return (uint16_t(p[0]) << 8) | p[1];
+    uint8_t msg[8] = {};
+    msg[0] = 4;                     // KeyEvent
+    msg[1] = down ? 1 : 0;
+    // msg[2..3] padding
+    writeU32(msg + 4, keysym);
+    return sendExact(fd, msg, sizeof(msg));
 }
 
-static uint32_t readU32(const uint8_t *p)
+// Map an SDL keycode to an X11 keysym. Returns 0 if unmapped.
+static uint32_t sdlToKeysym(SDL_Keycode key)
 {
-    return (uint32_t(p[0]) << 24) |
-           (uint32_t(p[1]) << 16) |
-           (uint32_t(p[2]) << 8) |
-           uint32_t(p[3]);
-}
+    // Printable ASCII: SDL keycodes equal the ASCII value, and X11
+    // keysyms for Latin-1 are the same numbers.
+    if (key >= 0x20 && key <= 0x7e)
+        return uint32_t(key);
 
-static void writeU16(uint8_t *p, uint16_t v)
-{
-    p[0] = uint8_t(v >> 8);
-    p[1] = uint8_t(v);
-}
+    switch (key) {
+    case SDLK_BACKSPACE:    return 0xff08;
+    case SDLK_TAB:          return 0xff09;
+    case SDLK_RETURN:       return 0xff0d;
+    case SDLK_ESCAPE:       return 0xff1b;
+    case SDLK_DELETE:       return 0xffff;
+    case SDLK_HOME:         return 0xff50;
+    case SDLK_LEFT:         return 0xff51;
+    case SDLK_UP:           return 0xff52;
+    case SDLK_RIGHT:        return 0xff53;
+    case SDLK_DOWN:         return 0xff54;
+    case SDLK_PAGEUP:       return 0xff55;
+    case SDLK_PAGEDOWN:     return 0xff56;
+    case SDLK_END:          return 0xff57;
+    case SDLK_INSERT:       return 0xff63;
+    case SDLK_LSHIFT:       return 0xffe1;
+    case SDLK_RSHIFT:       return 0xffe2;
+    case SDLK_LCTRL:        return 0xffe3;
+    case SDLK_RCTRL:        return 0xffe4;
+    case SDLK_CAPSLOCK:     return 0xffe5;
+    case SDLK_LALT:         return 0xffe9;
+    case SDLK_RALT:         return 0xffea;
+    case SDLK_LGUI:         return 0xffeb;   // Super
+    case SDLK_RGUI:         return 0xffec;
+    case SDLK_KP_ENTER:     return 0xff8d;
+    default: break;
+    }
 
-static void writeU32(uint8_t *p, uint32_t v)
-{
-    p[0] = uint8_t(v >> 24);
-    p[1] = uint8_t(v >> 16);
-    p[2] = uint8_t(v >> 8);
-    p[3] = uint8_t(v);
+    if (key >= SDLK_F1 && key <= SDLK_F12)
+        return 0xffbe + uint32_t(key - SDLK_F1);
+
+    return 0;
 }
 
 static int connectToServer(const char *host, const char *port)
@@ -692,10 +760,11 @@ static bool startDesktop()
 {
     setStatus("Starting Alpine Linux...");
 
+    // Add "subscribe": true into the payload so hbchannel streams output
     const std::string payload =
         "{\"command\":\"" +
         std::string(DESKTOP_SCRIPT) +
-        " start\"}";
+        " start\",\"subscribe\":true}";
 
     LSError error;
     LSErrorInit(&error);
@@ -785,6 +854,79 @@ static void shutdownLuna()
     }
 }
 
+struct Glyph { char ch; uint8_t rows[7]; };
+
+static const Glyph FONT[] = {
+    {' ',{0,0,0,0,0,0,0}},
+    {'A',{0x0E,0x11,0x11,0x1F,0x11,0x11,0x11}},
+    {'B',{0x1E,0x11,0x11,0x1E,0x11,0x11,0x1E}},
+    {'C',{0x0E,0x11,0x10,0x10,0x10,0x11,0x0E}},
+    {'D',{0x1E,0x11,0x11,0x11,0x11,0x11,0x1E}},
+    {'E',{0x1F,0x10,0x10,0x1E,0x10,0x10,0x1F}},
+    {'F',{0x1F,0x10,0x10,0x1E,0x10,0x10,0x10}},
+    {'G',{0x0E,0x11,0x10,0x17,0x11,0x11,0x0F}},
+    {'H',{0x11,0x11,0x11,0x1F,0x11,0x11,0x11}},
+    {'I',{0x0E,0x04,0x04,0x04,0x04,0x04,0x0E}},
+    {'J',{0x07,0x02,0x02,0x02,0x02,0x12,0x0C}},
+    {'K',{0x11,0x12,0x14,0x18,0x14,0x12,0x11}},
+    {'L',{0x10,0x10,0x10,0x10,0x10,0x10,0x1F}},
+    {'M',{0x11,0x1B,0x15,0x15,0x11,0x11,0x11}},
+    {'N',{0x11,0x19,0x15,0x13,0x11,0x11,0x11}},
+    {'O',{0x0E,0x11,0x11,0x11,0x11,0x11,0x0E}},
+    {'P',{0x1E,0x11,0x11,0x1E,0x10,0x10,0x10}},
+    {'Q',{0x0E,0x11,0x11,0x11,0x15,0x12,0x0D}},
+    {'R',{0x1E,0x11,0x11,0x1E,0x14,0x12,0x11}},
+    {'S',{0x0F,0x10,0x10,0x0E,0x01,0x01,0x1E}},
+    {'T',{0x1F,0x04,0x04,0x04,0x04,0x04,0x04}},
+    {'U',{0x11,0x11,0x11,0x11,0x11,0x11,0x0E}},
+    {'V',{0x11,0x11,0x11,0x11,0x11,0x0A,0x04}},
+    {'W',{0x11,0x11,0x11,0x15,0x15,0x1B,0x11}},
+    {'X',{0x11,0x11,0x0A,0x04,0x0A,0x11,0x11}},
+    {'Y',{0x11,0x11,0x0A,0x04,0x04,0x04,0x04}},
+    {'Z',{0x1F,0x01,0x02,0x04,0x08,0x10,0x1F}},
+    {'0',{0x0E,0x11,0x13,0x15,0x19,0x11,0x0E}},
+    {'1',{0x04,0x0C,0x04,0x04,0x04,0x04,0x0E}},
+    {'2',{0x0E,0x11,0x01,0x02,0x04,0x08,0x1F}},
+    {'3',{0x1E,0x01,0x01,0x0E,0x01,0x01,0x1E}},
+    {'4',{0x02,0x06,0x0A,0x12,0x1F,0x02,0x02}},
+    {'5',{0x1F,0x10,0x1E,0x01,0x01,0x11,0x0E}},
+    {'6',{0x06,0x08,0x10,0x1E,0x11,0x11,0x0E}},
+    {'7',{0x1F,0x01,0x02,0x04,0x08,0x08,0x08}},
+    {'8',{0x0E,0x11,0x11,0x0E,0x11,0x11,0x0E}},
+    {'9',{0x0E,0x11,0x11,0x0F,0x01,0x02,0x0C}},
+    {'.',{0x00,0x00,0x00,0x00,0x00,0x0C,0x0C}},
+    {':',{0x00,0x0C,0x0C,0x00,0x0C,0x0C,0x00}},
+    {'-',{0x00,0x00,0x00,0x1F,0x00,0x00,0x00}},
+    {'/',{0x01,0x01,0x02,0x04,0x08,0x10,0x10}},
+    {'%',{0x18,0x19,0x02,0x04,0x08,0x13,0x03}},
+    {'(',{0x02,0x04,0x08,0x08,0x08,0x04,0x02}},
+    {')',{0x08,0x04,0x02,0x02,0x02,0x04,0x08}},
+};
+
+static void drawText(SDL_Surface* s, int x, int y, int scale,
+                     const std::string& text, Uint32 color)
+{
+    for (char raw : text) {
+        char c = char(toupper((unsigned char)raw));
+
+        for (const Glyph& g : FONT) {
+            if (g.ch != c)
+                continue;
+
+            for (int row = 0; row < 7; ++row)
+                for (int col = 0; col < 5; ++col)
+                    if (g.rows[row] & (0x10 >> col)) {
+                        SDL_Rect r = { x + col * scale, y + row * scale,
+                                       scale, scale };
+                        SDL_FillRect(s, &r, color);
+                    }
+            break;
+        }
+
+        x += 6 * scale;
+    }
+}
+
 static void drawStatusScreen(SDL_Window* window)
 {
     SDL_Surface* surface = SDL_GetWindowSurface(window);
@@ -792,90 +934,58 @@ static void drawStatusScreen(SDL_Window* window)
     if (!surface)
         return;
 
-    SDL_FillRect(
-        surface,
-        nullptr,
-        SDL_MapRGB(surface->format, 18, 22, 32)
-    );
+    SDL_FillRect(surface, nullptr,
+                 SDL_MapRGB(surface->format, 18, 22, 32));
 
-    std::string status = getStatus();
-
-    // Display the current status in the window title.
+    const std::string status = getStatus();
     SDL_SetWindowTitle(window, status.c_str());
 
-    // Determine startup progress from actual launcher messages.
-    int progress = 5;
+    // Ease toward the real progress so the bar never jumps.
+    static float shown = 0.0f;
+    shown += (float(desktop.progress.load()) - shown) * 0.08f;
 
-    if (status.find("Alpine") != std::string::npos)
-        progress = 20;
-    else if (status.find("VNC") != std::string::npos)
-        progress = 45;
-    else if (status.find("LXQt") != std::string::npos)
-        progress = 75;
-    else if (status.find("Connecting") != std::string::npos)
-        progress = 90;
-    else if (status.find("ready") != std::string::npos)
-        progress = 100;
-    else if (status.find("failed") != std::string::npos)
-        progress = 0;
+    const bool failed = desktop.failed;
 
-    int barWidth = surface->w * 2 / 3;
-    int barHeight = 18;
+    const int scale = std::max(1, surface->w / 400);   // 1920 wide -> 4
+    const int barWidth = surface->w * 2 / 3;
+    const int barHeight = std::max(10, surface->h / 50);
+    const int barX = (surface->w - barWidth) / 2;
+    const int barY = surface->h / 2;
 
-    SDL_Rect background = {
-        (surface->w - barWidth) / 2,
-        surface->h / 2,
-        barWidth,
-        barHeight
-    };
-
+    SDL_Rect background = { barX, barY, barWidth, barHeight };
     SDL_Rect foreground = background;
-    foreground.w = barWidth * progress / 100;
+    foreground.w = int(barWidth * shown / 100.0f);
 
-    SDL_FillRect(
-        surface,
-        &background,
-        SDL_MapRGB(surface->format, 55, 62, 78)
-    );
+    SDL_FillRect(surface, &background,
+                 SDL_MapRGB(surface->format, 55, 62, 78));
 
-    if (progress > 0) {
-        Uint8 r = 60;
-        Uint8 g = 160;
-        Uint8 b = 230;
+    if (foreground.w > 0)
+        SDL_FillRect(surface, &foreground,
+                     failed ? SDL_MapRGB(surface->format, 220, 65, 65)
+                            : SDL_MapRGB(surface->format, 60, 160, 230));
 
-        if (desktop.failed) {
-            r = 220;
-            g = 65;
-            b = 65;
-        }
-
-        SDL_FillRect(
-            surface,
-            &foreground,
-            SDL_MapRGB(surface->format, r, g, b)
-        );
-    }
-
-    // Small activity indicator.
-    if (!desktop.ready && !desktop.failed) {
-        static int animation = 0;
-        animation = (animation + 1) % 20;
-
-        SDL_Rect indicator = {
-            surface->w / 2 - 5 + animation - 10,
-            surface->h / 2 + 40,
-            10,
-            10
-        };
-
-        SDL_FillRect(
-            surface,
-            &indicator,
-            SDL_MapRGB(surface->format, 100, 180, 255)
-        );
-    }
+    // Status text, centered above the bar.
+    const int textWidth = int(status.size()) * 6 * scale;
+    drawText(surface,
+             (surface->w - textWidth) / 2,
+             barY - 7 * scale - 3 * scale,
+             scale, status,
+             SDL_MapRGB(surface->format, 220, 225, 235));
 
     SDL_UpdateWindowSurface(window);
+}
+
+static bool isQuitEvent(const SDL_Event& e)
+{
+    switch (e.type) {
+    case SDL_QUIT:
+    case SDL_APP_TERMINATING:
+        return true;
+    case SDL_WINDOWEVENT:
+        return e.window.event == SDL_WINDOWEVENT_CLOSE;
+    default:
+        return false;
+    }
 }
 
 
@@ -905,11 +1015,15 @@ int main(int argc, char *argv[])
     const char* port =
         appArgc >= 2 ? argv[argOffset + 1] : "5901";
 
+    Uint32 connectStart = 0;
+
     // ------------------------------------------------
     // SDL initialization
     // ------------------------------------------------
 
     SDL_SetMainReady();
+
+    signal(SIGPIPE, SIG_IGN);
 
     if (SDL_Init(
         SDL_INIT_TIMER |
@@ -934,9 +1048,9 @@ int main(int argc, char *argv[])
         "Starting Alpine Linux...",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        std::min(mode.w, 960),
-        std::min(mode.h, 540),
-        SDL_WINDOW_SHOWN
+        mode.w,
+        mode.h,
+        SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP
     );
 
     if (!window) {
@@ -947,13 +1061,6 @@ int main(int argc, char *argv[])
 
     if (!initializeLuna()) {
         setStatus("Unable to connect to Luna bus");
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-    
-    if (!startDesktop()) {
-        shutdownLuna();
         SDL_DestroyWindow(window);
         SDL_Quit();
         return 1;
@@ -970,7 +1077,7 @@ int main(int argc, char *argv[])
 
     setStatus("Starting Alpine Linux...");
 
-    std::thread startupThread(startDesktop);
+    startDesktop();
 
     bool running = true;
     bool startupSucceeded = false;
@@ -993,30 +1100,41 @@ int main(int argc, char *argv[])
 
     printf("Waiting for LXQt startup...\n");
 
-    while (running &&
-           !desktop.ready &&
-           !desktop.failed &&
-           !desktop.finished) {
+    int iterations = 0;
+    const char* exitReason = "unknown";
+    Uint32 startupBegin = SDL_GetTicks();
 
+    for (;;) {
+        if (g_quit) { running = false; break; }
         pumpLuna();
+        ++iterations;
 
-        SDL_Event event;
-
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT)
-                running = false;
-
-            if (event.type == SDL_KEYDOWN &&
-                (event.key.keysym.sym == SDLK_ESCAPE ||
-                 event.key.keysym.sym == SDLK_q)) {
-                running = false;
-            }
+        if (desktop.ready)    { exitReason = "ready";    break; }
+        if (desktop.failed)   { exitReason = "failed";   break; }
+        if (desktop.finished) { exitReason = "finished"; break; }
+        if (SDL_GetTicks() - startupBegin > 60000) {
+            exitReason = "timeout";
+            desktop.failed = true;
+            break;
         }
 
-        drawStatusScreen(window);
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            if (isQuitEvent(event)) {
+                fprintf(stderr, "quit requested (event type 0x%x)\n", event.type);
+                running = false;
+                break;
+            }
+        }
+        if (!running) break;
 
+        drawStatusScreen(window);
         SDL_Delay(50);
     }
+
+    fprintf(stderr, "startup exit: reason=%s iterations=%d\n",
+            exitReason, iterations);
+    fflush(stderr);
 
     // ------------------------------------------------
     // Startup result
@@ -1037,8 +1155,11 @@ int main(int argc, char *argv[])
             SDL_Event event;
 
             while (SDL_PollEvent(&event)) {
-                if (event.type == SDL_QUIT)
+                if (isQuitEvent(event)) {
+                    fprintf(stderr, "quit requested (event type 0x%x)\n", event.type);
                     running = false;
+                    break;
+                }
             }
 
             drawStatusScreen(window);
@@ -1052,20 +1173,48 @@ int main(int argc, char *argv[])
     // Connect to VNC
     // ------------------------------------------------
 
-    setStatus("Connecting to VNC...");
-
+    setStatus("Connecting to VNC...", 90); 
     printf("Connecting to %s:%s\n", host, port);
     fflush(stdout);
 
-    fd = connectToServer(host, port);
+    connectStart = SDL_GetTicks();
 
-    if (fd < 0) {
-        setStatus("VNC connection failed");
-        goto cleanup;
+    while (running && SDL_GetTicks() - connectStart < 30000) {
+        if (g_quit) { running = false; break; }
+        pumpLuna();
+
+        if (desktop.failed)
+            break;
+
+        fd = connectToServer(host, port);
+
+        if (fd >= 0) {
+            if (handshake(fd, remoteWidth, remoteHeight)){
+                setStatus("Connected", 100); 
+                break;              // connected and negotiated
+            }
+
+            close(fd);              // accepted but not ready; retry
+            fd = -1;
+        }
+
+        // Wait ~250 ms, keeping the window responsive.
+        for (int i = 0; i < 5 && running; ++i) {
+            SDL_Event event;
+            while (SDL_PollEvent(&event)) {
+                if (isQuitEvent(event)) {
+                    fprintf(stderr, "quit requested (event type 0x%x)\n", event.type);
+                    running = false;
+                    break;
+                }
+            }
+            drawStatusScreen(window);
+            SDL_Delay(50);
+        }
     }
 
-    if (!handshake(fd, remoteWidth, remoteHeight)) {
-        setStatus("VNC handshake failed");
+    if (!running || fd < 0) {
+        setStatus("VNC connection failed");
         goto cleanup;
     }
 
@@ -1131,17 +1280,14 @@ int main(int argc, char *argv[])
 
         while (SDL_PollEvent(&event)) {
 
-            if (event.type == SDL_QUIT) {
+            if (isQuitEvent(event)) {
+                fprintf(stderr, "quit requested (event type 0x%x)\n", event.type);
                 running = false;
                 break;
             }
 
-            if (event.type == SDL_KEYDOWN &&
-                (event.key.keysym.sym == SDLK_ESCAPE ||
-                 event.key.keysym.sym == SDLK_q)) {
-                running = false;
-                break;
-            }
+            if (event.type == SDL_WINDOWEVENT)
+                fprintf(stderr, "  window event=%d\n", event.window.event);
 
             // ----------------------------------------
             // Mouse events
@@ -1254,6 +1400,30 @@ int main(int argc, char *argv[])
                     }
                 }
             }
+
+            if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
+                uint32_t keysym = sdlToKeysym(event.key.keysym.sym);
+
+                if (keysym != 0) {
+                    bool down = (event.type == SDL_KEYDOWN);
+
+                    // SDL generates auto-repeat as repeated KEYDOWN events.
+                    // Sending them as-is is correct for VNC: the server
+                    // treats repeated downs as repeats.
+                    if (!sendKeyEvent(fd, down, keysym)) {
+                        running = false;
+                        break;
+                    }
+                }
+                continue;
+            }
+
+            if (event.type == SDL_WINDOWEVENT &&
+                event.window.event == SDL_WINDOWEVENT_FOCUS_LOST) {
+                const uint32_t mods[] = {0xffe1, 0xffe2, 0xffe3, 0xffe4, 0xffe9, 0xffea};
+                for (uint32_t m : mods)
+                    sendKeyEvent(fd, false, m);
+            }
         }
 
         if (!running)
@@ -1335,9 +1505,6 @@ cleanup:
         SDL_DestroyWindow(window);
 
     SDL_Quit();
-
-    if (startupThread.joinable())
-                startupThread.join();
 
     return 0;
 }

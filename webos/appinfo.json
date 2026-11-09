@@ -4,9 +4,9 @@
     "vendor": "nscanu",
     "type": "native",
     "main": "webos-vnc",
-    "title": "VNC Test",
+    "title": "Alpine Launcher",
     "icon": "icon.png",
-    "appDescription": "SDL2 native application test",
+    "appDescription": "Launches for Alpine Linux in a chroot environment",
     "requiredACG": [
             "org.webosbrew.hbchannel.service.group"
     ]
