@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/nscanu/Code/webos-vnc/build/cmake_install.cmake"
+		"/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

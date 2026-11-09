@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nscanu/Code/webos-vnc
+CMAKE_SOURCE_DIR = /home/nscanu/Code/webos-vnc/WebOS-Alpine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nscanu/Code/webos-vnc/build
+CMAKE_BINARY_DIR = /home/nscanu/Code/webos-vnc/WebOS-Alpine/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -85,14 +85,14 @@ clean: CMakeFiles/webos-vnc.dir/clean
 CMakeFiles/webos-vnc.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webos-vnc.dir/build.make CMakeFiles/webos-vnc.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webos-vnc.dir/build.make CMakeFiles/webos-vnc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nscanu/Code/webos-vnc/build/CMakeFiles --progress-num=1,2 "Built target webos-vnc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles --progress-num=1,2 "Built target webos-vnc"
 .PHONY : CMakeFiles/webos-vnc.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/webos-vnc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nscanu/Code/webos-vnc/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/webos-vnc.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nscanu/Code/webos-vnc/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles 0
 .PHONY : CMakeFiles/webos-vnc.dir/rule
 
 # Convenience name for target.
@@ -102,7 +102,7 @@ webos-vnc: CMakeFiles/webos-vnc.dir/rule
 # codegen rule for target.
 CMakeFiles/webos-vnc.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/webos-vnc.dir/build.make CMakeFiles/webos-vnc.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nscanu/Code/webos-vnc/build/CMakeFiles --progress-num=1,2 "Finished codegen for target webos-vnc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles --progress-num=1,2 "Finished codegen for target webos-vnc"
 .PHONY : CMakeFiles/webos-vnc.dir/codegen
 
 # clean rule for target.

@@ -1,5 +1,7 @@
 #define SDL_MAIN_HANDLED
 
+#include <luna-service2/lunaservice.h>
+#include <glib.h>
 #include <SDL.h>
 
 #include <cstdio>
@@ -10,11 +12,153 @@
 #include <string>
 #include <vector>
 
+#include <thread>
+#include <mutex>
+#include <atomic>
+#include <array>
+#include <chrono>
+
 #include <unistd.h>
 #include <errno.h>
 #include <netdb.h>
 #include <sys/socket.h>
 #include <sys/select.h>
+
+static const char* DESKTOP_SCRIPT =
+    "/media/developer/apps/usr/palm/applications/"
+    "com.nscanu.webos-vnc/linux-desktop.sh";
+
+struct DesktopState {
+    std::mutex mutex;
+    std::string status = "Initializing...";
+    std::atomic<bool> ready{false};
+    std::atomic<bool> failed{false};
+    std::atomic<bool> finished{false};
+    std::atomic<bool> stopRequested{false};
+};
+
+static DesktopState desktop;
+
+void setStatus(const std::string& message)
+{
+    std::lock_guard<std::mutex> lock(desktop.mutex);
+    desktop.status = message;
+}
+
+std::string getStatus()
+{
+    std::lock_guard<std::mutex> lock(desktop.mutex);
+    return desktop.status;
+}
+
+static const char* HB_SPAWN_URI =
+    "luna://org.webosbrew.hbchannel.service/spawn";
+
+static const char* HB_EXEC_URI =
+    "luna://org.webosbrew.hbchannel.service/exec";
+
+static LSHandle* lunaHandle = nullptr;
+static GMainLoop* lunaLoop = nullptr;
+
+static LSMessageToken spawnToken = LSMESSAGE_TOKEN_INVALID;
+static LSMessageToken stopToken = LSMESSAGE_TOKEN_INVALID;
+
+static std::atomic<bool> stopFinished{false};
+
+static void pumpLuna()
+{
+    if (!lunaLoop)
+        return;
+
+    GMainContext* context = g_main_loop_get_context(lunaLoop);
+
+    while (g_main_context_iteration(context, FALSE)) {
+    }
+}
+
+static bool spawnCallback(
+    LSHandle* handle,
+    LSMessage* message,
+    void* context)
+{
+    const char* payload = LSMessageGetPayload(message);
+
+    if (!payload)
+        return true;
+
+    std::string response(payload);
+
+    // stdout from linux-desktop.sh
+    if (response.find("\"stdoutString\"") != std::string::npos) {
+
+        if (response.find("already mounted") != std::string::npos)
+            setStatus("Alpine environment ready");
+
+        else if (response.find("Starting Xvnc") != std::string::npos)
+            setStatus("Starting VNC server...");
+
+        else if (response.find("Starting LXQt") != std::string::npos)
+            setStatus("Starting LXQt desktop...");
+
+        else if (response.find("Desktop started") != std::string::npos) {
+            setStatus("LXQt started. Connecting...");
+            desktop.ready = true;
+        }
+
+        else if (response.find("ERROR") != std::string::npos)
+            setStatus("Desktop startup error");
+    }
+
+    // Detect spawn process termination.
+    if (response.find("\"event\":\"exit\"") != std::string::npos) {
+
+        const char* exitCode = strstr(payload, "\"exitCode\":");
+
+        if (exitCode) {
+            int code = atoi(exitCode + 11);
+
+            if (code != 0) {
+                desktop.failed = true;
+                setStatus("Desktop startup failed (exit " +
+                          std::to_string(code) + ")");
+            }
+        }
+    }
+
+    if (response.find("\"event\":\"close\"") != std::string::npos) {
+        desktop.finished = true;
+
+        if (!desktop.ready && !desktop.failed) {
+            desktop.failed = true;
+            setStatus("Desktop exited before becoming ready");
+        }
+    }
+
+    return true;
+}
+
+static bool stopCallback(
+    LSHandle* handle,
+    LSMessage* message,
+    void* context)
+{
+    const char* payload = LSMessageGetPayload(message);
+
+    if (payload) {
+        std::string response(payload);
+
+        if (response.find("\"returnValue\":true") != std::string::npos) {
+            setStatus("Desktop stopped");
+        } else {
+            setStatus("Desktop shutdown failed");
+        }
+    }
+
+    stopFinished = true;
+
+    return true;
+}
+
 
 static bool recvExact(int fd, void *buffer, size_t length)
 {
@@ -518,39 +662,252 @@ static bool processServerMessage(
     }
 }
 
+static bool initializeLuna()
+{
+    LSError error;
+    LSErrorInit(&error);
+
+    lunaLoop = g_main_loop_new(nullptr, FALSE);
+
+    if (!LSRegister(nullptr, &lunaHandle, &error)) {
+        fprintf(stderr, "LSRegister failed: %s\n",
+                error.message);
+        LSErrorFree(&error);
+        return false;
+    }
+
+    if (!LSGmainAttach(lunaHandle, lunaLoop, &error)) {
+        fprintf(stderr, "LSGmainAttach failed: %s\n",
+                error.message);
+        LSErrorFree(&error);
+        return false;
+    }
+
+    LSErrorFree(&error);
+
+    return true;
+}
+
+static bool startDesktop()
+{
+    setStatus("Starting Alpine Linux...");
+
+    const std::string payload =
+        "{\"command\":\"" +
+        std::string(DESKTOP_SCRIPT) +
+        " start\"}";
+
+    LSError error;
+    LSErrorInit(&error);
+
+    bool result = LSCall(
+        lunaHandle,
+        HB_SPAWN_URI,
+        payload.c_str(),
+        spawnCallback,
+        nullptr,
+        &spawnToken,
+        &error
+    );
+
+    if (!result) {
+        fprintf(stderr, "Desktop spawn failed: %s\n",
+                error.message);
+
+        setStatus("Failed to start desktop");
+        desktop.failed = true;
+    }
+
+    LSErrorFree(&error);
+
+    return result;
+}
+
+static bool stopDesktop()
+{
+    setStatus("Stopping LXQt...");
+    stopFinished = false;
+
+    const std::string payload =
+        "{\"command\":\"" +
+        std::string(DESKTOP_SCRIPT) +
+        " stop\"}";
+
+    LSError error;
+    LSErrorInit(&error);
+
+    bool result = LSCallOneReply(
+        lunaHandle,
+        HB_EXEC_URI,
+        payload.c_str(),
+        stopCallback,
+        nullptr,
+        nullptr,
+        &error
+    );
+
+    if (!result) {
+        fprintf(stderr, "Desktop stop request failed: %s\n",
+                error.message);
+
+        setStatus("Failed to send shutdown request");
+        stopFinished = true;
+    }
+
+    LSErrorFree(&error);
+
+    return result;
+}
+
+static void shutdownLuna()
+{
+    if (lunaHandle) {
+        LSError error;
+        LSErrorInit(&error);
+
+        if (spawnToken != LSMESSAGE_TOKEN_INVALID) {
+            LSCallCancel(lunaHandle, spawnToken, &error);
+            spawnToken = LSMESSAGE_TOKEN_INVALID;
+        }
+
+        LSErrorFree(&error);
+
+        LSErrorInit(&error);
+        LSUnregister(lunaHandle, &error);
+        LSErrorFree(&error);
+
+        lunaHandle = nullptr;
+    }
+
+    if (lunaLoop) {
+        g_main_loop_unref(lunaLoop);
+        lunaLoop = nullptr;
+    }
+}
+
+static void drawStatusScreen(SDL_Window* window)
+{
+    SDL_Surface* surface = SDL_GetWindowSurface(window);
+
+    if (!surface)
+        return;
+
+    SDL_FillRect(
+        surface,
+        nullptr,
+        SDL_MapRGB(surface->format, 18, 22, 32)
+    );
+
+    std::string status = getStatus();
+
+    // Display the current status in the window title.
+    SDL_SetWindowTitle(window, status.c_str());
+
+    // Determine startup progress from actual launcher messages.
+    int progress = 5;
+
+    if (status.find("Alpine") != std::string::npos)
+        progress = 20;
+    else if (status.find("VNC") != std::string::npos)
+        progress = 45;
+    else if (status.find("LXQt") != std::string::npos)
+        progress = 75;
+    else if (status.find("Connecting") != std::string::npos)
+        progress = 90;
+    else if (status.find("ready") != std::string::npos)
+        progress = 100;
+    else if (status.find("failed") != std::string::npos)
+        progress = 0;
+
+    int barWidth = surface->w * 2 / 3;
+    int barHeight = 18;
+
+    SDL_Rect background = {
+        (surface->w - barWidth) / 2,
+        surface->h / 2,
+        barWidth,
+        barHeight
+    };
+
+    SDL_Rect foreground = background;
+    foreground.w = barWidth * progress / 100;
+
+    SDL_FillRect(
+        surface,
+        &background,
+        SDL_MapRGB(surface->format, 55, 62, 78)
+    );
+
+    if (progress > 0) {
+        Uint8 r = 60;
+        Uint8 g = 160;
+        Uint8 b = 230;
+
+        if (desktop.failed) {
+            r = 220;
+            g = 65;
+            b = 65;
+        }
+
+        SDL_FillRect(
+            surface,
+            &foreground,
+            SDL_MapRGB(surface->format, r, g, b)
+        );
+    }
+
+    // Small activity indicator.
+    if (!desktop.ready && !desktop.failed) {
+        static int animation = 0;
+        animation = (animation + 1) % 20;
+
+        SDL_Rect indicator = {
+            surface->w / 2 - 5 + animation - 10,
+            surface->h / 2 + 40,
+            10,
+            10
+        };
+
+        SDL_FillRect(
+            surface,
+            &indicator,
+            SDL_MapRGB(surface->format, 100, 180, 255)
+        );
+    }
+
+    SDL_UpdateWindowSurface(window);
+}
+
+
 int main(int argc, char *argv[])
 {
-	int argOffset = 1;
+    // ------------------------------------------------
+    // Arguments
+    // ------------------------------------------------
 
-	// Skip webOS launch metadata.
-	if (argc > 1 && argv[1][0] == '{')
-	    argOffset = 2;
+    int argOffset = 1;
 
-	int appArgc = argc - argOffset;
+    // Skip webOS launch metadata.
+    if (argc > 1 && argv[1][0] == '{')
+        argOffset = 2;
 
-	if (appArgc < 1 || appArgc > 2) {
-	    printf("Usage: %s <server-address> [port]\n", argv[0]);
-	    return 1;
-	}
+    int appArgc = argc - argOffset;
 
-	const char *host = argv[argOffset];
-	const char *port = appArgc == 2 ? argv[argOffset + 1] : "5900";
-
-	printf("Connecting to %s:%s\n", host, port);
-	fflush(stdout);
-
-	int fd = connectToServer(host, port);
-
-    if (fd < 0)
-        return 1;
-
-    int remoteWidth = 0;
-    int remoteHeight = 0;
-
-    if (!handshake(fd, remoteWidth, remoteHeight)) {
-        close(fd);
+    if (appArgc > 2) {
+        printf("Usage: %s [server-address] [port]\n", argv[0]);
         return 1;
     }
+
+    // Your launcher starts Xvnc on localhost:5901.
+    const char* host =
+        appArgc >= 1 ? argv[argOffset] : "127.0.0.1";
+
+    const char* port =
+        appArgc >= 2 ? argv[argOffset + 1] : "5901";
+
+    // ------------------------------------------------
+    // SDL initialization
+    // ------------------------------------------------
 
     SDL_SetMainReady();
 
@@ -560,7 +917,6 @@ int main(int argc, char *argv[])
         SDL_INIT_EVENTS
     ) < 0) {
         fprintf(stderr, "SDL_Init: %s\n", SDL_GetError());
-        close(fd);
         return 1;
     }
 
@@ -571,63 +927,79 @@ int main(int argc, char *argv[])
         mode.h = 720;
     }
 
-    printf("SDL display mode: %dx%d\n", mode.w, mode.h);
-    fflush(stdout);
+    printf("Display: %dx%d\n", mode.w, mode.h);
 
-    SDL_Window *window = SDL_CreateWindow(
-        "TigerVNC webOS test",
-        SDL_WINDOWPOS_UNDEFINED,
-        SDL_WINDOWPOS_UNDEFINED,
-        mode.w,
-        mode.h,
-        SDL_WINDOW_FULLSCREEN
+    // Start with a windowed startup screen.
+    SDL_Window* window = SDL_CreateWindow(
+        "Starting Alpine Linux...",
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
+        std::min(mode.w, 960),
+        std::min(mode.h, 540),
+        SDL_WINDOW_SHOWN
     );
 
     if (!window) {
         fprintf(stderr, "SDL_CreateWindow: %s\n", SDL_GetError());
         SDL_Quit();
-        close(fd);
         return 1;
     }
 
-    SDL_Surface *framebuffer = SDL_CreateRGBSurfaceWithFormat(
-        0, remoteWidth, remoteHeight, 32, SDL_PIXELFORMAT_ARGB8888
-    );
-
-    if (!framebuffer) {
-        fprintf(stderr, "Framebuffer allocation: %s\n", SDL_GetError());
+    if (!initializeLuna()) {
+        setStatus("Unable to connect to Luna bus");
         SDL_DestroyWindow(window);
         SDL_Quit();
-        close(fd);
         return 1;
     }
-
-    SDL_FillRect(framebuffer, nullptr,
-                 SDL_MapRGB(framebuffer->format, 0, 0, 0));
-
-    if (!requestFramebuffer(fd, remoteWidth, remoteHeight, false)) {
-        fprintf(stderr, "Initial framebuffer request failed\n");
-        SDL_FreeSurface(framebuffer);
+    
+    if (!startDesktop()) {
+        shutdownLuna();
         SDL_DestroyWindow(window);
         SDL_Quit();
-        close(fd);
         return 1;
     }
 
-    printf("Waiting for framebuffer updates...\n");
-    fflush(stdout);
+    // ------------------------------------------------
+    // Start Alpine / LXQt
+    // ------------------------------------------------
+
+    desktop.ready = false;
+    desktop.failed = false;
+    desktop.finished = false;
+    desktop.stopRequested = false;
+
+    setStatus("Starting Alpine Linux...");
+
+    std::thread startupThread(startDesktop);
 
     bool running = true;
-    bool connected = true;
+    bool startupSucceeded = false;
+    bool vncConnected = false;
 
-	uint8_t mouseButtons = 0;
-	int mouseX = 0;
-	int mouseY = 0;
+    int fd = -1;
+    int remoteWidth = 0;
+    int remoteHeight = 0;
 
-	int windowW, windowH;
-	SDL_GetWindowSize(window, &windowW, &windowH);
+    SDL_Surface* framebuffer = nullptr;
 
-    while (running && connected) {
+    // VNC mouse state (declare before any goto cleanup).
+    uint8_t mouseButtons = 0;
+    int mouseX = 0;
+    int mouseY = 0;
+
+    // ------------------------------------------------
+    // Startup screen
+    // ------------------------------------------------
+
+    printf("Waiting for LXQt startup...\n");
+
+    while (running &&
+           !desktop.ready &&
+           !desktop.failed &&
+           !desktop.finished) {
+
+        pumpLuna();
+
         SDL_Event event;
 
         while (SDL_PollEvent(&event)) {
@@ -636,30 +1008,152 @@ int main(int argc, char *argv[])
 
             if (event.type == SDL_KEYDOWN &&
                 (event.key.keysym.sym == SDLK_ESCAPE ||
-                 event.key.keysym.sym == SDLK_q))
+                 event.key.keysym.sym == SDLK_q)) {
                 running = false;
+            }
+        }
 
-            if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
-                printf("KEY %s: scancode=%d keycode=%d mod=%u\n",
-                       event.type == SDL_KEYDOWN ? "DOWN" : "UP",
-                       event.key.keysym.scancode,
-                       event.key.keysym.sym,
-                       event.key.keysym.mod);
-                fflush(stdout);
+        drawStatusScreen(window);
+
+        SDL_Delay(50);
+    }
+
+    // ------------------------------------------------
+    // Startup result
+    // ------------------------------------------------
+
+    if (!running) {
+        setStatus("Startup cancelled");
+        goto cleanup;
+    }
+
+    if (desktop.failed || !desktop.ready) {
+        setStatus("LXQt startup failed");
+
+        // Leave the error visible briefly.
+        Uint32 start = SDL_GetTicks();
+
+        while (SDL_GetTicks() - start < 2000) {
+            SDL_Event event;
+
+            while (SDL_PollEvent(&event)) {
+                if (event.type == SDL_QUIT)
+                    running = false;
             }
-            
-            if (event.type == SDL_MOUSEMOTION) {
-                printf("MOUSE MOVE: x=%d y=%d\n",
-                       event.motion.x, event.motion.y);
-                fflush(stdout);
+
+            drawStatusScreen(window);
+            SDL_Delay(50);
+        }
+
+        goto cleanup;
+    }
+
+    // ------------------------------------------------
+    // Connect to VNC
+    // ------------------------------------------------
+
+    setStatus("Connecting to VNC...");
+
+    printf("Connecting to %s:%s\n", host, port);
+    fflush(stdout);
+
+    fd = connectToServer(host, port);
+
+    if (fd < 0) {
+        setStatus("VNC connection failed");
+        goto cleanup;
+    }
+
+    if (!handshake(fd, remoteWidth, remoteHeight)) {
+        setStatus("VNC handshake failed");
+        goto cleanup;
+    }
+
+    vncConnected = true;
+
+    // ------------------------------------------------
+    // Enter fullscreen
+    // ------------------------------------------------
+
+    SDL_SetWindowTitle(window, "Alpine Linux - LXQt");
+
+    if (SDL_SetWindowFullscreen(
+        window,
+        SDL_WINDOW_FULLSCREEN
+    ) != 0) {
+        fprintf(stderr, "Fullscreen: %s\n", SDL_GetError());
+    }
+
+    // ------------------------------------------------
+    // Framebuffer
+    // ------------------------------------------------
+
+    framebuffer = SDL_CreateRGBSurfaceWithFormat(
+        0,
+        remoteWidth,
+        remoteHeight,
+        32,
+        SDL_PIXELFORMAT_ARGB8888
+    );
+
+    if (!framebuffer) {
+        fprintf(stderr, "Framebuffer allocation: %s\n",
+                SDL_GetError());
+        goto cleanup;
+    }
+
+    SDL_FillRect(
+        framebuffer,
+        nullptr,
+        SDL_MapRGB(framebuffer->format, 0, 0, 0)
+    );
+
+    if (!requestFramebuffer(
+        fd,
+        remoteWidth,
+        remoteHeight,
+        false
+    )) {
+        fprintf(stderr, "Initial framebuffer request failed\n");
+        goto cleanup;
+    }
+
+    // ------------------------------------------------
+    // VNC event loop
+    // ------------------------------------------------
+
+    printf("Connected to LXQt.\n");
+    fflush(stdout);
+
+    while (running && vncConnected) {
+
+        SDL_Event event;
+
+        while (SDL_PollEvent(&event)) {
+
+            if (event.type == SDL_QUIT) {
+                running = false;
+                break;
             }
-            
+
+            if (event.type == SDL_KEYDOWN &&
+                (event.key.keysym.sym == SDLK_ESCAPE ||
+                 event.key.keysym.sym == SDLK_q)) {
+                running = false;
+                break;
+            }
+
+            // ----------------------------------------
+            // Mouse events
+            // ----------------------------------------
+
             if (event.type == SDL_MOUSEMOTION ||
                 event.type == SDL_MOUSEBUTTONDOWN ||
                 event.type == SDL_MOUSEBUTTONUP) {
-            
-                int x, y;
-            
+
+                int x;
+                int y;
+
                 if (event.type == SDL_MOUSEMOTION) {
                     x = event.motion.x;
                     y = event.motion.y;
@@ -667,46 +1161,94 @@ int main(int argc, char *argv[])
                     x = event.button.x;
                     y = event.button.y;
                 }
-            
+
+                int windowW, windowH;
+
+                SDL_GetWindowSize(window, &windowW, &windowH);
+
+                if (windowW <= 0 || windowH <= 0)
+                    continue;
+
                 mouseX = x * remoteWidth / windowW;
                 mouseY = y * remoteHeight / windowH;
-            
-                mouseX = std::max(0, std::min(mouseX, remoteWidth - 1));
-                mouseY = std::max(0, std::min(mouseY, remoteHeight - 1));
-            
+
+                mouseX = std::max(
+                    0, std::min(mouseX, remoteWidth - 1)
+                );
+
+                mouseY = std::max(
+                    0, std::min(mouseY, remoteHeight - 1)
+                );
+
                 if (event.type == SDL_MOUSEBUTTONDOWN ||
                     event.type == SDL_MOUSEBUTTONUP) {
-            
+
                     uint8_t buttonMask = 0;
-            
+
                     switch (event.button.button) {
-                        case SDL_BUTTON_LEFT:   buttonMask = 1; break;
-                        case SDL_BUTTON_MIDDLE: buttonMask = 2; break;
-                        case SDL_BUTTON_RIGHT:  buttonMask = 4; break;
+                        case SDL_BUTTON_LEFT:
+                            buttonMask = 1;
+                            break;
+
+                        case SDL_BUTTON_MIDDLE:
+                            buttonMask = 2;
+                            break;
+
+                        case SDL_BUTTON_RIGHT:
+                            buttonMask = 4;
+                            break;
                     }
-            
+
                     if (event.type == SDL_MOUSEBUTTONDOWN)
                         mouseButtons |= buttonMask;
                     else
                         mouseButtons &= ~buttonMask;
                 }
-            
-                if (!sendPointerEvent(fd, mouseButtons, mouseX, mouseY))
+
+                if (!sendPointerEvent(
+                    fd,
+                    mouseButtons,
+                    mouseX,
+                    mouseY
+                )) {
                     running = false;
+                    break;
+                }
             }
-            
+
+            // ----------------------------------------
+            // Mouse wheel
+            // ----------------------------------------
+
             if (event.type == SDL_MOUSEWHEEL) {
+
                 int direction = event.wheel.y;
-            
-                if (event.wheel.direction == SDL_MOUSEWHEEL_FLIPPED)
+
+                if (event.wheel.direction ==
+                    SDL_MOUSEWHEEL_FLIPPED) {
                     direction = -direction;
-            
-                uint8_t wheelButton = direction > 0 ? 8 : 16;
-            
-                for (int i = 0; i < std::abs(direction); ++i) {
-                    if (!sendPointerEvent(fd, mouseButtons | wheelButton,
-                                          mouseX, mouseY) ||
-                        !sendPointerEvent(fd, mouseButtons, mouseX, mouseY)) {
+                }
+
+                uint8_t wheelButton =
+                    direction > 0 ? 8 : 16;
+
+                for (int i = 0;
+                     i < std::abs(direction);
+                     ++i) {
+
+                    if (!sendPointerEvent(
+                            fd,
+                            mouseButtons | wheelButton,
+                            mouseX,
+                            mouseY
+                        ) ||
+                        !sendPointerEvent(
+                            fd,
+                            mouseButtons,
+                            mouseX,
+                            mouseY
+                        )) {
+
                         running = false;
                         break;
                     }
@@ -717,15 +1259,27 @@ int main(int argc, char *argv[])
         if (!running)
             break;
 
+        // --------------------------------------------
+        // Receive VNC framebuffer updates
+        // --------------------------------------------
+
         fd_set readfds;
+
         FD_ZERO(&readfds);
         FD_SET(fd, &readfds);
 
-        struct timeval timeout;
+        struct timeval timeout = {};
+
         timeout.tv_sec = 0;
         timeout.tv_usec = 100000;
 
-        int result = select(fd + 1, &readfds, nullptr, nullptr, &timeout);
+        int result = select(
+            fd + 1,
+            &readfds,
+            nullptr,
+            nullptr,
+            &timeout
+        );
 
         if (result < 0) {
             if (errno == EINTR)
@@ -738,16 +1292,53 @@ int main(int argc, char *argv[])
         if (result == 0)
             continue;
 
-        connected = processServerMessage(fd, framebuffer, window);
+        vncConnected = processServerMessage(
+            fd,
+            framebuffer,
+            window
+        );
     }
 
-    if (!connected)
-        fprintf(stderr, "VNC connection lost or protocol error\n");
+    // ------------------------------------------------
+    // Cleanup
+    // ------------------------------------------------
 
-    SDL_FreeSurface(framebuffer);
-    SDL_DestroyWindow(window);
+cleanup:
+
+    if (fd >= 0) {
+        close(fd);
+        fd = -1;
+    }
+
+    if (framebuffer) {
+        SDL_FreeSurface(framebuffer);
+        framebuffer = nullptr;
+    }
+
+    if (lunaHandle) {
+        stopDesktop();
+
+        Uint32 shutdownStart = SDL_GetTicks();
+
+        while (!stopFinished &&
+               SDL_GetTicks() - shutdownStart < 15000) {
+
+            pumpLuna();
+            drawStatusScreen(window);
+            SDL_Delay(30);
+        }
+
+        shutdownLuna();
+    }
+
+    if (window)
+        SDL_DestroyWindow(window);
+
     SDL_Quit();
-    close(fd);
+
+    if (startupThread.joinable())
+                startupThread.join();
 
     return 0;
 }
+

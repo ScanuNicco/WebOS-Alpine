@@ -6,5 +6,8 @@
     "main": "webos-vnc",
     "title": "VNC Test",
     "icon": "icon.png",
-    "appDescription": "SDL2 native application test"
+    "appDescription": "SDL2 native application test",
+    "requiredACG": [
+            "org.webosbrew.hbchannel.service.group"
+    ]
 }

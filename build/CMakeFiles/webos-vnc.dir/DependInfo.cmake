@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/nscanu/Code/webos-vnc/src/main.cpp" "CMakeFiles/webos-vnc.dir/src/main.cpp.o" "gcc" "CMakeFiles/webos-vnc.dir/src/main.cpp.o.d"
+  "/home/nscanu/Code/webos-vnc/WebOS-Alpine/src/main.cpp" "CMakeFiles/webos-vnc.dir/src/main.cpp.o" "gcc" "CMakeFiles/webos-vnc.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

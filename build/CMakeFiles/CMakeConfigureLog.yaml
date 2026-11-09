@@ -1237,3 +1237,1535 @@ events:
       CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
       CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+      - "/bin/"
+    searched_directories:
+      - "/home/nscanu/.local/bin/uname"
+      - "/home/nscanu/bin/uname"
+      - "/usr/local/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:207 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The target system is: Buildroot - 1 - armv7l
+      The host system is: Linux - 7.2.5-200.fc44.x86_64 - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/gmake"
+      - "/home/nscanu/.local/bin/gmake"
+      - "/home/nscanu/bin/gmake"
+      - "/usr/local/bin/gmake"
+    found: "/usr/bin/gmake"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/usr/share/cmake/Modules/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/share/buildroot/"
+    found: "/usr/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ 
+      Build flags: -D_LARGEFILE_SOURCE;-D_LARGEFILE64_SOURCE;-D_FILE_OFFSET_BITS=64
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/4.3.0/CompilerIdCXX/a.out
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-ar"
+      - "ar"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-ar"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-ranlib"
+      - "ranlib"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-ranlib"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-strip"
+      - "strip"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-strip"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-ld"
+      - "ld"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-ld"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-nm"
+      - "nm"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-nm"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-objdump"
+      - "objdump"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-objdump"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-objcopy"
+      - "objcopy"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-objcopy"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-readelf"
+      - "readelf"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-readelf"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-dlltool"
+      - "dlltool"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-dlltool"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-dlltool"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-dlltool"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-dlltool"
+      - "/usr/bin/arm-webos-linux-gnueabi-dlltool"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-dlltool"
+      - "/usr/sbin/arm-webos-linux-gnueabi-dlltool"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/dlltool"
+      - "/home/nscanu/.local/bin/dlltool"
+      - "/home/nscanu/bin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/usr/bin/dlltool"
+      - "/usr/local/sbin/dlltool"
+      - "/usr/sbin/dlltool"
+    found: false
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-addr2line"
+      - "addr2line"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-addr2line"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-tapi"
+      - "tapi"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-tapi"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-tapi"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-tapi"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-tapi"
+      - "/usr/bin/arm-webos-linux-gnueabi-tapi"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-tapi"
+      - "/usr/sbin/arm-webos-linux-gnueabi-tapi"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/tapi"
+      - "/home/nscanu/.local/bin/tapi"
+      - "/home/nscanu/bin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/usr/bin/tapi"
+      - "/usr/local/sbin/tapi"
+      - "/usr/sbin/tapi"
+    found: false
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "arm-webos-linux-gnueabi-gcc-ar-16"
+      - "arm-webos-linux-gnueabi-gcc-ar16"
+      - "arm-webos-linux-gnueabi-gcc-ar"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/usr/bin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/usr/sbin/arm-webos-linux-gnueabi-gcc-ar-16.2"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/usr/bin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/usr/sbin/arm-webos-linux-gnueabi-gcc-ar-16"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ar16"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-gcc-ar16"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-gcc-ar16"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-gcc-ar16"
+      - "/usr/bin/arm-webos-linux-gnueabi-gcc-ar16"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-gcc-ar16"
+      - "/usr/sbin/arm-webos-linux-gnueabi-gcc-ar16"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ar"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "arm-webos-linux-gnueabi-gcc-ranlib"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/usr/bin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/usr/sbin/arm-webos-linux-gnueabi-gcc-ranlib-16.2"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/usr/bin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/usr/sbin/arm-webos-linux-gnueabi-gcc-ranlib-16"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "/home/nscanu/.local/bin/arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "/home/nscanu/bin/arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "/usr/local/bin/arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "/usr/bin/arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "/usr/local/sbin/arm-webos-linux-gnueabi-gcc-ranlib16"
+      - "/usr/sbin/arm-webos-linux-gnueabi-gcc-ranlib16"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-gcc-ranlib"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP"
+      binary: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/share/buildroot;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/share/buildroot"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_77007/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_77007.dir/build.make CMakeFiles/cmTC_77007.dir/build
+        gmake[1]: Entering directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP'
+        Building CXX object CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -DNDEBUG   -v -o CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++.br_real
+        Target: arm-webos-linux-gnueabi
+        Configured with: ./configure --prefix=/__w/buildroot-nc4/buildroot-nc4/output/host --sysconfdir=/__w/buildroot-nc4/buildroot-nc4/output/host/etc --enable-static --target=arm-webos-linux-gnueabi --with-sysroot=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/sysroot --enable-__cxa_atexit --with-gnu-ld --disable-libssp --disable-multilib --enable-plugins --enable-lto --with-gmp=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpc=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpfr=/__w/buildroot-nc4/buildroot-nc4/output/host --with-pkgversion='Buildroot 2026.08' --with-bugurl=https://gitlab.com/buildroot.org/buildroot/-/issues --without-zstd --disable-decimal-float --disable-libquadmath --disable-libquadmath-support --enable-tls --enable-threads --with-isl=/__w/buildroot-nc4/buildroot-nc4/output/host --with-abi=aapcs-linux --with-cpu=cortex-a9 --with-fpu=neon-fp16 --with-float=softfp --with-mode=arm --enable-languages=c,c++ --with-build-time-tools=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/bin --enable-shared --disable-libgomp
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 16.2.0 (Buildroot 2026.08) 
+        COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'CMakeFiles/cmTC_77007.dir/'
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/cc1plus -quiet -v -iprefix /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/ -isysroot /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_GNU_SOURCE -D _LARGEFILE_SOURCE -D _LARGEFILE64_SOURCE -D _FILE_OFFSET_BITS=64 -D NDEBUG /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_77007.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-a9 -mfloat-abi=softfp -mfpu=neon-fp16 -mabi=aapcs-linux -mtls-dialect=gnu -marm -mlibarch=armv7-a+mp+sec+neon-fp16 -march=armv7-a+mp+sec+neon-fp16 -O2 -version -o /tmp/cccf2srf.s
+        GNU C++20 (Buildroot 2026.08) version 16.2.0 (arm-webos-linux-gnueabi)
+        	compiled by GNU C version 12.5.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.4.1, isl version isl-0.27-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0"
+        ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi"
+        ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/backward"
+        ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include"
+        ignoring nonexistent directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/include"
+        ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed"
+        ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/backward
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include
+        End of search list.
+        Compiler executable checksum: e8031a2acecb93bca7dfa0247f96e6aa
+        COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'CMakeFiles/cmTC_77007.dir/'
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/bin/as -v -march=armv7-a+mp+sec+neon-fp16 -mfloat-abi=softfp -mfpu=neon-fp16 -meabi=5 -o CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o /tmp/cccf2srf.s
+        GNU assembler version 2.46.1 (arm-webos-linux-gnueabi) using BFD version (GNU Binutils) 2.46.1
+        COMPILER_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/bin/
+        LIBRARY_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_77007
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_77007.dir/link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++.br_real
+        COLLECT_LTO_WRAPPER=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/lto-wrapper
+        Target: arm-webos-linux-gnueabi
+        Configured with: ./configure --prefix=/__w/buildroot-nc4/buildroot-nc4/output/host --sysconfdir=/__w/buildroot-nc4/buildroot-nc4/output/host/etc --enable-static --target=arm-webos-linux-gnueabi --with-sysroot=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/sysroot --enable-__cxa_atexit --with-gnu-ld --disable-libssp --disable-multilib --enable-plugins --enable-lto --with-gmp=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpc=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpfr=/__w/buildroot-nc4/buildroot-nc4/output/host --with-pkgversion='Buildroot 2026.08' --with-bugurl=https://gitlab.com/buildroot.org/buildroot/-/issues --without-zstd --disable-decimal-float --disable-libquadmath --disable-libquadmath-support --enable-tls --enable-threads --with-isl=/__w/buildroot-nc4/buildroot-nc4/output/host --with-abi=aapcs-linux --with-cpu=cortex-a9 --with-fpu=neon-fp16 --with-float=softfp --with-mode=arm --enable-languages=c,c++ --with-build-time-tools=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/bin --enable-shared --disable-libgomp
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 16.2.0 (Buildroot 2026.08) 
+        COMPILER_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/bin/
+        LIBRARY_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'cmTC_77007' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'cmTC_77007.'
+         /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/collect2 -plugin /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/liblto_plugin.so -plugin-opt=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQiJovu.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lrt -plugin-opt=-pass-through=-lglibc_polyfills -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot --eh-frame-hdr -dynamic-linker /lib/ld-linux.so.3 -X -m armelf_linux_eabi -o cmTC_77007 /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crt1.o /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crti.o /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0 -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc --push-state --as-needed -lrt --pop-state --push-state --as-needed -lglibc_polyfills --pop-state -lgcc_s -lgcc /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crtn.o
+        COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'cmTC_77007' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'cmTC_77007.'
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -DNDEBUG  -v CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_77007
+        gmake[1]: Leaving directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0]
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi]
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/backward]
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include]
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed]
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include]
+          add: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include]
+        end of search list found
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include/c++/16.2.0]
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi]
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/backward] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include/c++/16.2.0/backward]
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/include]
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed]
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include]
+        collapse include dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include]
+        implicit include dirs: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include/c++/16.2.0;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include/c++/16.2.0/backward;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/include;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/include;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_77007/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_77007.dir/build.make CMakeFiles/cmTC_77007.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP']
+        ignore line: [Building CXX object CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -DNDEBUG   -v -o CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++.br_real]
+        ignore line: [Target: arm-webos-linux-gnueabi]
+        ignore line: [Configured with: ./configure --prefix=/__w/buildroot-nc4/buildroot-nc4/output/host --sysconfdir=/__w/buildroot-nc4/buildroot-nc4/output/host/etc --enable-static --target=arm-webos-linux-gnueabi --with-sysroot=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/sysroot --enable-__cxa_atexit --with-gnu-ld --disable-libssp --disable-multilib --enable-plugins --enable-lto --with-gmp=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpc=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpfr=/__w/buildroot-nc4/buildroot-nc4/output/host --with-pkgversion='Buildroot 2026.08' --with-bugurl=https://gitlab.com/buildroot.org/buildroot/-/issues --without-zstd --disable-decimal-float --disable-libquadmath --disable-libquadmath-support --enable-tls --enable-threads --with-isl=/__w/buildroot-nc4/buildroot-nc4/output/host --with-abi=aapcs-linux --with-cpu=cortex-a9 --with-fpu=neon-fp16 --with-float=softfp --with-mode=arm --enable-languages=c,c++ --with-build-time-tools=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/bin --enable-shared --disable-libgomp]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 16.2.0 (Buildroot 2026.08) ]
+        ignore line: [COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'CMakeFiles/cmTC_77007.dir/']
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/cc1plus -quiet -v -iprefix /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/ -isysroot /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_GNU_SOURCE -D _LARGEFILE_SOURCE -D _LARGEFILE64_SOURCE -D _FILE_OFFSET_BITS=64 -D NDEBUG /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_77007.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-a9 -mfloat-abi=softfp -mfpu=neon-fp16 -mabi=aapcs-linux -mtls-dialect=gnu -marm -mlibarch=armv7-a+mp+sec+neon-fp16 -march=armv7-a+mp+sec+neon-fp16 -O2 -version -o /tmp/cccf2srf.s]
+        ignore line: [GNU C++20 (Buildroot 2026.08) version 16.2.0 (arm-webos-linux-gnueabi)]
+        ignore line: [	compiled by GNU C version 12.5.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.4.1  isl version isl-0.27-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0"]
+        ignore line: [ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi"]
+        ignore line: [ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/backward"]
+        ignore line: [ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include"]
+        ignore line: [ignoring nonexistent directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/include"]
+        ignore line: [ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed"]
+        ignore line: [ignoring duplicate directory "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/../../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/arm-webos-linux-gnueabi]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include/c++/16.2.0/backward]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/include-fixed]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/include]
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: e8031a2acecb93bca7dfa0247f96e6aa]
+        ignore line: [COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'CMakeFiles/cmTC_77007.dir/']
+        ignore line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/bin/as -v -march=armv7-a+mp+sec+neon-fp16 -mfloat-abi=softfp -mfpu=neon-fp16 -meabi=5 -o CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o /tmp/cccf2srf.s]
+        ignore line: [GNU assembler version 2.46.1 (arm-webos-linux-gnueabi) using BFD version (GNU Binutils) 2.46.1]
+        ignore line: [COMPILER_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/bin/]
+        ignore line: [LIBRARY_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_77007]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_77007.dir/link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++.br_real]
+        ignore line: [COLLECT_LTO_WRAPPER=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/lto-wrapper]
+        ignore line: [Target: arm-webos-linux-gnueabi]
+        ignore line: [Configured with: ./configure --prefix=/__w/buildroot-nc4/buildroot-nc4/output/host --sysconfdir=/__w/buildroot-nc4/buildroot-nc4/output/host/etc --enable-static --target=arm-webos-linux-gnueabi --with-sysroot=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/sysroot --enable-__cxa_atexit --with-gnu-ld --disable-libssp --disable-multilib --enable-plugins --enable-lto --with-gmp=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpc=/__w/buildroot-nc4/buildroot-nc4/output/host --with-mpfr=/__w/buildroot-nc4/buildroot-nc4/output/host --with-pkgversion='Buildroot 2026.08' --with-bugurl=https://gitlab.com/buildroot.org/buildroot/-/issues --without-zstd --disable-decimal-float --disable-libquadmath --disable-libquadmath-support --enable-tls --enable-threads --with-isl=/__w/buildroot-nc4/buildroot-nc4/output/host --with-abi=aapcs-linux --with-cpu=cortex-a9 --with-fpu=neon-fp16 --with-float=softfp --with-mode=arm --enable-languages=c,c++ --with-build-time-tools=/__w/buildroot-nc4/buildroot-nc4/output/host/arm-webos-linux-gnueabi/bin --enable-shared --disable-libgomp]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 16.2.0 (Buildroot 2026.08) ]
+        ignore line: [COMPILER_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/bin/]
+        ignore line: [LIBRARY_PATH=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/:/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'cmTC_77007' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'cmTC_77007.']
+        link line: [ /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/collect2 -plugin /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/liblto_plugin.so -plugin-opt=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQiJovu.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-latomic_asneeded -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lrt -plugin-opt=-pass-through=-lglibc_polyfills -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot --eh-frame-hdr -dynamic-linker /lib/ld-linux.so.3 -X -m armelf_linux_eabi -o cmTC_77007 /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crt1.o /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crti.o /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0 -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib -L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -latomic_asneeded -lc --push-state --as-needed -lrt --pop-state --push-state --as-needed -lglibc_polyfills --pop-state -lgcc_s -lgcc /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crtn.o]
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../libexec/gcc/arm-webos-linux-gnueabi/16.2.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccQiJovu.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-latomic_asneeded] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lglibc_polyfills] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib/ld-linux.so.3] ==> ignore
+          arg [-X] ==> ignore
+          arg [-m] ==> ignore
+          arg [armelf_linux_eabi] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_77007] ==> ignore
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crt1.o] ==> obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crt1.o]
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crti.o] ==> obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crti.o]
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o] ==> obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o]
+          arg [-L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0] ==> dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0]
+          arg [-L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc] ==> dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc]
+          arg [-L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib] ==> dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib]
+          arg [-L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib] ==> dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib]
+          arg [-L/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib] ==> dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib]
+          arg [CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-latomic_asneeded] ==> lib [atomic_asneeded]
+          arg [-lc] ==> lib [c]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lrt] ==> lib [rt]
+          arg [--pop-state] ==> ignore
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lglibc_polyfills] ==> lib [glibc_polyfills]
+          arg [--pop-state] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o] ==> obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o]
+          arg [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crtn.o] ==> obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '--sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot' '-D' '_LARGEFILE_SOURCE' '-D' '_LARGEFILE64_SOURCE' '-D' '_FILE_OFFSET_BITS=64' '-O2' '-D' 'NDEBUG' '-v' '-o' 'cmTC_77007' '-shared-libgcc' '-mcpu=cortex-a9' '-mfloat-abi=softfp' '-mfpu=neon-fp16' '-mabi=aapcs-linux' '-mtls-dialect=gnu' '-marm' '-mlibarch=armv7-a+mp+sec+neon-fp16' '-march=armv7-a+mp+sec+neon-fp16' '-dumpdir' 'cmTC_77007.']
+        ignore line: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -DNDEBUG  -v CMakeFiles/cmTC_77007.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_77007]
+        ignore line: [gmake[1]: Leaving directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-uUFDwP']
+        ignore line: []
+        ignore line: []
+        collapse obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o]
+        collapse obj [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o]
+        collapse library dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0]
+        collapse library dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc]
+        collapse library dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/../lib/gcc/arm-webos-linux-gnueabi/16.2.0/../../../../arm-webos-linux-gnueabi/lib] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/lib]
+        collapse library dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib]
+        collapse library dir [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib] ==> [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;atomic_asneeded;c;rt;glibc_polyfills;gcc_s;gcc]
+        implicit objs: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crt1.o;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crti.o;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtbegin.o;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0/crtend.o;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/crtn.o]
+        implicit dirs: [/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc/arm-webos-linux-gnueabi/16.2.0;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/lib/gcc;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/lib;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib;/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "CMakeLists.txt:7 (find_path)"
+    mode: "path"
+    variable: "SDL2_INCLUDE_DIR"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "SDL.h"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/X11/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/X11/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/include/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/include/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/X11/SDL2/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/X11/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/SDL2/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/SDL2/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/SDL2/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/SDL2/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/SDL2/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/SDL2/SDL.h"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/SDL.h"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2/"
+    search_context:
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include/X11"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "CMakeLists.txt:13 (find_library)"
+    mode: "library"
+    variable: "SDL2_LIBRARY"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "SDL2"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/X11/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/X11R6/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/pkg/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/opt/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/X11/"
+    searched_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/.local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/home/nscanu/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/local/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/libSDL2.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:162 (check_cxx_source_compiles)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:226 (_threads_check_libc)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-n3ddLn"
+      binary: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-n3ddLn"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/share/buildroot"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-n3ddLn'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c5b19/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c5b19.dir/build.make CMakeFiles/cmTC_c5b19.dir/build
+        gmake[1]: Entering directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-n3ddLn'
+        Building CXX object CMakeFiles/cmTC_c5b19.dir/src.cxx.o
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -DCMAKE_HAVE_LIBC_PTHREAD  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -DNDEBUG -std=gnu++11 -o CMakeFiles/cmTC_c5b19.dir/src.cxx.o -c /home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-n3ddLn/src.cxx
+        Linking CXX executable cmTC_c5b19
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5b19.dir/link.txt --verbose=1
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/bin/ld: CMakeFiles/cmTC_c5b19.dir/src.cxx.o: undefined reference to symbol 'pthread_join@@GLIBC_2.4'
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/bin/ld: /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/lib/libpthread.so.0: error adding symbols: DSO missing from command line
+        collect2: error: ld returned 1 exit status
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -DNDEBUG CMakeFiles/cmTC_c5b19.dir/src.cxx.o -o cmTC_c5b19
+        gmake[1]: *** [CMakeFiles/cmTC_c5b19.dir/build.make:102: cmTC_c5b19] Error 1
+        gmake[1]: Leaving directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-n3ddLn'
+        gmake: *** [Makefile:134: cmTC_c5b19/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CheckLibraryExists.cmake:154 (try_compile)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:175 (check_library_exists)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:238 (_threads_check_lib)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-ZSHZD7"
+      binary: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-ZSHZD7"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/share/buildroot"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-ZSHZD7'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5860e/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5860e.dir/build.make CMakeFiles/cmTC_5860e.dir/build
+        gmake[1]: Entering directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-ZSHZD7'
+        Building CXX object CMakeFiles/cmTC_5860e.dir/CheckFunctionExists.cxx.o
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DCHECK_FUNCTION_EXISTS=pthread_create -O2 -DNDEBUG -std=gnu++11 -o CMakeFiles/cmTC_5860e.dir/CheckFunctionExists.cxx.o -c /home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-ZSHZD7/CheckFunctionExists.cxx
+        Linking CXX executable cmTC_5860e
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5860e.dir/link.txt --verbose=1
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/bin/ld: cannot find -lpthreads: No such file or directory
+        collect2: error: ld returned 1 exit status
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DCHECK_FUNCTION_EXISTS=pthread_create -O2 -DNDEBUG CMakeFiles/cmTC_5860e.dir/CheckFunctionExists.cxx.o -o cmTC_5860e  -lpthreads
+        gmake[1]: *** [CMakeFiles/cmTC_5860e.dir/build.make:102: cmTC_5860e] Error 1
+        gmake[1]: Leaving directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-ZSHZD7'
+        gmake: *** [Makefile:134: cmTC_5860e/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CheckLibraryExists.cmake:154 (try_compile)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:175 (check_library_exists)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:239 (_threads_check_lib)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-0pKPFV"
+      binary: "/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-0pKPFV"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/share/buildroot"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-0pKPFV'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_32c52/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_32c52.dir/build.make CMakeFiles/cmTC_32c52.dir/build
+        gmake[1]: Entering directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-0pKPFV'
+        Building CXX object CMakeFiles/cmTC_32c52.dir/CheckFunctionExists.cxx.o
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DCHECK_FUNCTION_EXISTS=pthread_create -O2 -DNDEBUG -std=gnu++11 -o CMakeFiles/cmTC_32c52.dir/CheckFunctionExists.cxx.o -c /home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-0pKPFV/CheckFunctionExists.cxx
+        Linking CXX executable cmTC_32c52
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_32c52.dir/link.txt --verbose=1
+        /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++ --sysroot=/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DCHECK_FUNCTION_EXISTS=pthread_create -O2 -DNDEBUG CMakeFiles/cmTC_32c52.dir/CheckFunctionExists.cxx.o -o cmTC_32c52  -lpthread
+        gmake[1]: Leaving directory '/home/nscanu/Code/webos-vnc/WebOS-Alpine/build/CMakeFiles/CMakeScratch/TryCompile-0pKPFV'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:517 (find_program)"
+      - "CMakeLists.txt:22 (find_package)"
+    mode: "program"
+    variable: "PKG_CONFIG_EXECUTABLE"
+    description: "pkg-config executable"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "pkg-config"
+      - "pkgconf"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/"
+      - "/home/nscanu/.local/bin/"
+      - "/home/nscanu/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/bin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/sbin/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/"
+      - "/usr/bin/"
+      - "/usr/sbin/"
+      - "/usr/"
+      - "/bin/"
+      - "/sbin/"
+      - "/usr/X11R6/bin/"
+      - "/usr/X11R6/sbin/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/bin/"
+      - "/usr/pkg/sbin/"
+      - "/usr/pkg/"
+      - "/opt/bin/"
+      - "/opt/sbin/"
+      - "/opt/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/pkg-config"
+    search_context:
+      CMAKE_PROGRAM_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin"
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:761 (find_library)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:811 (_pkg_find_libs)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:1149 (_pkg_recalculate)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:1166 (_pkg_check_modules_internal)"
+      - "CMakeLists.txt:24 (pkg_check_modules)"
+    mode: "library"
+    variable: "pkgcfg_lib_GLIB_glib-2.0"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "glib-2.0"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/libglib-2.0.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:761 (find_library)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:811 (_pkg_find_libs)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:1149 (_pkg_recalculate)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:1166 (_pkg_check_modules_internal)"
+      - "CMakeLists.txt:25 (pkg_check_modules)"
+    mode: "library"
+    variable: "pkgcfg_lib_LS2_luna-service2"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "luna-service2"
+    candidate_directories:
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+      - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/"
+    found: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/libluna-service2.so"
+    search_context:
+      ENV{PATH}:
+        - "/home/nscanu/.local/bin"
+        - "/home/nscanu/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/usr/sbin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+      CMAKE_SYSROOT: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+      CMAKE_FIND_ROOT_PATH: "/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot"
+...

@@ -17,6 +17,33 @@ find_library(SDL2_LIBRARY
 
 add_executable(webos-vnc src/main.cpp)
 
+find_package(Threads REQUIRED)
+
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(GLIB REQUIRED glib-2.0)
+pkg_check_modules(LS2 REQUIRED luna-service2)
+
+target_include_directories(webos-vnc PRIVATE
+    ${GLIB_INCLUDE_DIRS}
+    ${LS2_INCLUDE_DIRS}
+)
+
+target_link_directories(webos-vnc PRIVATE
+    ${GLIB_LIBRARY_DIRS}
+    ${LS2_LIBRARY_DIRS}
+)
+
+target_link_libraries(webos-vnc PRIVATE
+    ${GLIB_LIBRARIES}
+    ${LS2_LIBRARIES}
+)
+
+target_link_libraries(webos-vnc
+    PRIVATE
+    Threads::Threads
+)
+
 target_include_directories(webos-vnc PRIVATE
     ${SDL2_INCLUDE_DIR}
 )

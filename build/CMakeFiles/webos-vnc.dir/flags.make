@@ -4,7 +4,7 @@
 # compile CXX with /home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/bin/arm-webos-linux-gnueabi-g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2
+CXX_INCLUDES = -I/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/glib-2.0 -I/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/lib/glib-2.0/include -I/home/nscanu/Downloads/arm-webos-linux-gnueabi_sdk-buildroot/arm-webos-linux-gnueabi/sysroot/usr/include/SDL2
 
 CXX_FLAGS = -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -DNDEBUG -std=gnu++11
 
