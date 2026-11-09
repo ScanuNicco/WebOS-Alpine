@@ -1,0 +1,3 @@
+/home/nscanu/Code/webos-vnc/build/CMakeFiles/webos-vnc.dir
+/home/nscanu/Code/webos-vnc/build/CMakeFiles/edit_cache.dir
+/home/nscanu/Code/webos-vnc/build/CMakeFiles/rebuild_cache.dir

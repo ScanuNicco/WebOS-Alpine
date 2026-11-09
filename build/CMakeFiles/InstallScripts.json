@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/nscanu/Code/webos-vnc/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

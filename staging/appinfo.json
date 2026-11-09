@@ -1,0 +1,10 @@
+{
+    "id": "com.nscanu.webos-vnc",
+    "version": "0.1.0",
+    "vendor": "nscanu",
+    "type": "native",
+    "main": "webos-vnc",
+    "title": "VNC Test",
+    "icon": "icon.png",
+    "appDescription": "SDL2 native application test"
+}
